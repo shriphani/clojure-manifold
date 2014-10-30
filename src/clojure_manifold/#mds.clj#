@@ -1,0 +1,2 @@
+(ns clojure-manifold.mds
+  "Implementation of the MDS algorithm")
