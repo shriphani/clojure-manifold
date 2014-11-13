@@ -24,3 +24,17 @@
      (binding [*out* wrtr]
        (doseq [row a-matrix]
          (println (string/join ", " row)))))))
+
+(defn load-indexed-data
+  [csv-file]
+  (let [data (with-open [in-file (io/reader csv-file)]
+               (doall
+                (csv/read-csv in-file)))]
+    (map-indexed
+     (fn [i x]
+       [i x])
+     (matrix
+      (map
+       (fn [row]
+         (map #(Double/parseDouble %) row))
+       data)))))

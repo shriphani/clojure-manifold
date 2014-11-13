@@ -46,13 +46,20 @@
       a-matrix))
    a-matrix))
 
-(defn mds
-  "Take a matrix and find a configuration in n dimensions
-   that preserves directions"
-  [a-matrix n]
-  (let [D (proximity-matrix a-matrix)
-        centered-D (double-center D)
+(defn distances->points
+  "Takes a distance matrix and retrieves the
+   points in the embedding that preserves these
+   details"
+  [D n]
+  (let [centered-D (double-center D)
         {U :U
          S :S} (svd centered-D)]
     (* (submatrix U 1 [0 n])
        (submatrix S 0 n 0 n))))
+
+(defn mds
+  "Take a matrix and find a configuration in n dimensions
+   that preserves directions"
+  [a-matrix n]
+  (let [D (proximity-matrix a-matrix)]
+    (distances->points D n)))
