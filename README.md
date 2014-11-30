@@ -12,6 +12,13 @@ nil
 user> (mds M 2) ; M is a matrix, 2 is the desired number of dimensions
 ```
 
+### Isomap algorithm:
+```clojure
+user> (use 'clojure-manifold.isomap :reload)
+nil
+user> (isomap M 2) ; M is a matrix, 2 is the desired number of dimensions
+```
+
 ## License
 
 Copyright © 2014 Shriphani Palakodety
